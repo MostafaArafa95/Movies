@@ -1,9 +1,9 @@
 import 'react-native-gesture-handler';
 
 import React, { Component } from 'react'
-import { Text, View } from 'react-native'
 //TODO: Remove useless pages files
-import MoviesList from "./components/pages/MoviesList";
+import AllMovies from "./components/pages/AllMovies";
+import MyMovies from "./components/pages/MyMovies";
 import { NavigationContainer } from '@react-navigation/native';
 //TODO: uninstall '@react-navigation/stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -21,7 +21,7 @@ export class Root extends Component {
                             let iconName;
                             switch (route.name) {
                                 case 'All Movies': iconName = "movie-search"; break;
-                                case 'My Movies': console.log("hi"); iconName = "movie-filter"; break;
+                                case 'My Movies': iconName = "movie-filter"; break;
                                 default:
                                     break;
                             }
@@ -34,8 +34,8 @@ export class Root extends Component {
                         inactiveTintColor: 'gray',
                     }}
                 >
-                    <Tab.Screen name="All Movies" component={MoviesList} />
-                    <Tab.Screen name="My Movies" component={MoviesList} />
+                    <Tab.Screen name="All Movies" component={AllMovies} />
+                    <Tab.Screen name="My Movies" component={MyMovies} />
 
                 </Tab.Navigator>
             </NavigationContainer>
