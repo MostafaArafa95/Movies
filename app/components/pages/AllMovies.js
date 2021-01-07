@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { FlatList, Text } from 'react-native'
+import { Text } from 'react-native'
 import { getMovies } from "../../modules/API/APICalls/Movies";
 import MovieCard from "../controls/MovieCard";
 import MoviesList from "../controls/MoviesList";
@@ -17,7 +17,6 @@ const AllMovies = () => {
 
     const { moviesList = [] } = movies;
 
-    const renderSingleMovie = ({ item }) => <MovieCard {...item} />
 
     const renderErrorPage = () => {
         if (fetchError) {
@@ -50,25 +49,22 @@ const AllMovies = () => {
         ).catch(err => {
             console.log(err.message)
             setFetchError(err);
-        })//TODO: handle error messages
+        })
     }
 
     useEffect(() => {
         return loadMovies(movies.page);
     }, []);
     return (
-        <FlatList
+        <MoviesList
             data={moviesList}
-            renderItem={renderSingleMovie}
-            keyExtractor={item => item.id.toString() + item.title}
             ListFooterComponent={renderFooter}
-            onEndReached={() => { loadMovies(movies.page + 1) }}
-            onEndReachedThreshold={0.7}
             ListEmptyComponent={renderErrorPage}
+            onEndReached={() => { loadMovies(movies.page + 1) }}
             onRefresh={() => loadMovies(1, true)}
-            refreshing={false}
         />
     )
+
 }
 
 
