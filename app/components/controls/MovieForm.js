@@ -1,24 +1,30 @@
 import React, { useState, useEffect } from 'react'
 import { TextInput, View, Text, StyleSheet, TouchableWithoutFeedback, Button } from "react-native";
 import DateTimePicker from '@react-native-community/datetimepicker';
+import { formatDate } from "../../modules/Utils";
+
 const MovieForm = (props) => {
 
     const [movieData, setMovieData] = useState({ title: "", overview: "", release_date: new Date(), poster_path: "" })
     const [showDatePicker, setShowDatePicker] = useState(false)
     const { onSave = () => { } } = props;
+    const formattedDate = formatDate(movieData.release_date);
     return (
         <View style={styles.container}>
+            {/* Title */}
             <View style={styles.section}>
                 <Text style={styles.title}>Title</Text>
                 <TextInput style={styles.textInput} onChangeText={(text) => setMovieData({ ...movieData, title: text })} value={movieData.title} />
             </View>
+            {/* Release date */}
             <View style={styles.section}>
                 <Text style={styles.title}>Release date</Text>
-                {/* <TouchableWithoutFeedback onPress={() => console.log("hi")}> */}
-                <TouchableWithoutFeedback onPress={() => console.log("hi")}>
-                    <TextInput style={styles.textInput} value={movieData.release_date.toString()} editable={false} />
+                <TouchableWithoutFeedback onPress={() => { setShowDatePicker(true) }}>
+                    <View>
+                        <TextInput style={styles.textInput} value={formattedDate} editable={false} />
+                    </View>
                 </TouchableWithoutFeedback>
-                <Button title="Pick Date" onPress={() => { setShowDatePicker(true) }} />
+
                 {showDatePicker && <DateTimePicker
                     testID="dateTimePicker"
                     value={movieData.release_date}
@@ -29,24 +35,23 @@ const MovieForm = (props) => {
                         const currentDate = selectedDate || date;
                         setShowDatePicker(false);
                         setMovieData({ ...movieData, release_date: currentDate });
-                        //console.log(typeof currentDate);
-                        // setDate(currentDate);
                     }}
                 />}
-                {/* </TouchableWithoutFeedback> */}
             </View>
+            {/* overview */}
             <View style={styles.section}>
                 <Text style={styles.title}>Overview</Text>
                 {/** text start */}
                 <TextInput style={styles.textInput} numberOfLines={4} multiline={true} onChangeText={(text) => setMovieData({ ...movieData, overview: text })} value={movieData.overview} />
             </View>
+            {/* poster */}
             <View style={styles.section}>
                 <Text style={styles.title}>Poster</Text>
-
             </View>
+            {/* save button */}
             <View style={[styles.section, { alignContent: "flex-end" }]}>
                 <Button title="Save" onPress={() => {
-                    onSave({ ...movieData, release_date: movieData.release_date.toString() })
+                    onSave({ ...movieData, release_date: formattedDate })
                 }} />
 
             </View>
@@ -57,6 +62,7 @@ const MovieForm = (props) => {
 const styles = StyleSheet.create({
     container: {
         padding: 15,
+        width: "80%",
         backgroundColor: "ghostwhite"
     },
     section: {

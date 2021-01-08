@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react'
-import { Text } from 'react-native'
-import { getMovies } from "../../modules/API/APICalls/Movies";
+import React, { useEffect, useState } from 'react'
+
 import MovieCard from "../controls/MovieCard";
 import MoviesList from "../controls/MoviesList";
+import { Text } from 'react-native'
+import { getMovies } from "../../modules/API/APICalls/Movies";
 
 //TODO: add comments
 const pickMoviesKeys = (movies) => {

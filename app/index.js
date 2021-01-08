@@ -1,13 +1,11 @@
 import 'react-native-gesture-handler';
 
+import { AllMovies, MyMovies } from "./components/pages"
 import React, { Component } from 'react'
-//TODO: Remove useless pages files
-import AllMovies from "./components/pages/AllMovies";
-import MyMovies from "./components/pages/MyMovies";
-import { NavigationContainer } from '@react-navigation/native';
-//TODO: uninstall '@react-navigation/stack'
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 const Tab = createBottomTabNavigator();
 export class Root extends Component {

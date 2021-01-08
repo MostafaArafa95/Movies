@@ -1,20 +1,21 @@
-import React, { useState, useEffect } from 'react'
-import { Text, View, StyleSheet, TouchableWithoutFeedback, TextInput } from 'react-native'
+import React, { useState } from 'react'
+import { StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native'
+
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import MoviesList from "../controls/MoviesList";
 import MovieForm from "../controls/MovieForm";
+import MoviesList from "../controls/MoviesList";
 import ResponsiveModal from "../controls/ResponsiveModal";
 
 const MyMovies = () => {
     const [isModalVisible, setIsModalVisible] = useState(false)
     const [moviesList, setMovies] = useState([]);
     //TODO: add string file
+    //TODO: fix this UI
     const renderEmpty = () => (<Text>Your list is empty</Text>)
-    console.log({ moviesList })
     return (
         <>
-            <TouchableWithoutFeedback style={{ backgroundColor: "green" }} onPress={() => setIsModalVisible(true)}>
-                <View style={[styles.floatingButton, { backgroundColor: "red" }]}>
+            <TouchableWithoutFeedback onPress={() => setIsModalVisible(true)}>
+                <View style={styles.floatingButton}>
                     <Icon name={"plus-circle"} size={60} color={"tomato"} />
                 </View>
             </TouchableWithoutFeedback>
@@ -29,11 +30,7 @@ const MyMovies = () => {
                 </ResponsiveModal>
                 <MoviesList
                     data={moviesList}
-                    // ListFooterComponent={renderFooter}
-                    ListEmptyComponent={renderEmpty}
-                // onEndReached={() => { loadMovies(movies.page + 1) }}
-                // onRefresh={() => loadMovies(1, true)}
-                />
+                    ListEmptyComponent={renderEmpty} />
             </View>
         </>
     )

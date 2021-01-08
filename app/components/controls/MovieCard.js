@@ -48,7 +48,6 @@ const styles = StyleSheet.create({
         elevation: 3,
         paddingVertical: 10,
         paddingHorizontal: 10,
-
         borderRadius: 10,
         marginVertical: 5,
         marginHorizontal: 10
