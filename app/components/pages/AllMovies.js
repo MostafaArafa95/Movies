@@ -4,11 +4,18 @@ import MovieCard from "../controls/MovieCard";
 import MoviesList from "../controls/MoviesList";
 import { Text } from 'react-native'
 import { getMovies } from "../../modules/API/APICalls/Movies";
+import { API_URLS } from "../../config/APIConfig"
 
 //TODO: add comments
 const pickMoviesKeys = (movies) => {
     return movies.map(({ title, id, overview, release_date, poster_path }) =>
-        ({ title, id, overview, release_date, posterPath: poster_path }));
+    ({
+        title,
+        id,
+        overview,
+        release_date,
+        posterPath: API_URLS.imagesBaseURl + poster_path
+    }));
 }
 
 

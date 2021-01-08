@@ -14,11 +14,6 @@ const MyMovies = () => {
     const renderEmpty = () => (<Text>Your list is empty</Text>)
     return (
         <>
-            <TouchableWithoutFeedback onPress={() => setIsModalVisible(true)}>
-                <View style={styles.floatingButton}>
-                    <Icon name={"plus-circle"} size={60} color={"tomato"} />
-                </View>
-            </TouchableWithoutFeedback>
             <View>
                 <ResponsiveModal visible={isModalVisible} onDismiss={() => setIsModalVisible(false)}>
                     <MovieForm onSave={(movie) => {
@@ -32,6 +27,11 @@ const MyMovies = () => {
                     data={moviesList}
                     ListEmptyComponent={renderEmpty} />
             </View>
+            <TouchableWithoutFeedback onPress={() => setIsModalVisible(true)}>
+                <View style={styles.floatingButton}>
+                    <Icon name={"plus-circle"} size={60} color={"tomato"} />
+                </View>
+            </TouchableWithoutFeedback>
         </>
     )
 }

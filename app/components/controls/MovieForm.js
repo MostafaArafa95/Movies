@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { TextInput, View, Text, StyleSheet, TouchableWithoutFeedback, Button } from "react-native";
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { formatDate } from "../../modules/Utils";
-
+import ImagePicker from "./ImagePicker";
 const MovieForm = (props) => {
-
-    const [movieData, setMovieData] = useState({ title: "", overview: "", release_date: new Date(), poster_path: "" })
+    //TODO: fix click dismiss stuff
+    const [movieData, setMovieData] = useState({ title: "", overview: "", release_date: new Date(), posterPath: "" })
     const [showDatePicker, setShowDatePicker] = useState(false)
     const { onSave = () => { } } = props;
     const formattedDate = formatDate(movieData.release_date);
@@ -47,6 +47,7 @@ const MovieForm = (props) => {
             {/* poster */}
             <View style={styles.section}>
                 <Text style={styles.title}>Poster</Text>
+                <ImagePicker onSave={(uri) => { setMovieData({ ...movieData, posterPath: uri }) }} />
             </View>
             {/* save button */}
             <View style={[styles.section, { alignContent: "flex-end" }]}>

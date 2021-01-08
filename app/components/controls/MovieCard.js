@@ -1,13 +1,9 @@
 import React, { memo } from 'react'
 import { Text, View, Image, StyleSheet, ActivityIndicator } from 'react-native'
-import { API_URLS } from "../../config/APIConfig"
-//TODO: make this pure component
+const PLACEHOLDER_IMAGE_PATH = "../../assets/images/film-poster-placeholder.png";
 const MovieCard = (props) => {
-    let { title = "", overview = "", posterPath = "", release_date = "", isLoading = false } = props;
-    if (isLoading) {
-        //TODO: add strings const
-        title = "Loading"
-    }
+    const { title = "", overview = "", posterPath = "", release_date = "", isLoading = false } = props;
+    const imageSource = posterPath ? { uri: posterPath, cache: 'only-if-cached' } : require(PLACEHOLDER_IMAGE_PATH);
     return (
         <View
             style={styles.movieCard}
@@ -16,10 +12,7 @@ const MovieCard = (props) => {
                 <ActivityIndicator style={[styles.moviePoster, styles.loadingPoster]} size="large" color="tomato" />
                 : <Image
                     style={styles.moviePoster}
-                    source={{
-                        uri: API_URLS.imagesBaseURl + posterPath,
-                        cache: 'only-if-cached'
-                    }}
+                    source={imageSource}
                 />}
 
             {isLoading ? <View style={styles.textContainer} >
