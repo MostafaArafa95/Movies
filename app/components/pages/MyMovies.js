@@ -5,16 +5,22 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import MovieForm from "../controls/MovieForm";
 import MoviesList from "../controls/MoviesList";
 import ResponsiveModal from "../controls/ResponsiveModal";
+const EmptyList = () => {
+    return (
+        <View style={styles.emptyList}>
+            <Icon name={"tablet-android"} size={100} color={"tomato"} />
+            <Text style={styles.title}>Nothing</Text >
+            <Text>Your collection list is empty</Text>
 
+        </View>
+    )
+}
 const MyMovies = () => {
     const [isModalVisible, setIsModalVisible] = useState(false)
     const [moviesList, setMovies] = useState([]);
-    //TODO: add string file
-    //TODO: fix this UI
-    const renderEmpty = () => (<Text>Your list is empty</Text>)
     return (
         <>
-            <View>
+            <View style={{ flex: 1 }}>
                 <ResponsiveModal visible={isModalVisible} onDismiss={() => setIsModalVisible(false)}>
                     <MovieForm onSave={(movie) => {
                         const newMovies = [{ ...movie, id: moviesList.length }, ...moviesList];
@@ -25,7 +31,8 @@ const MyMovies = () => {
                 </ResponsiveModal>
                 <MoviesList
                     data={moviesList}
-                    ListEmptyComponent={renderEmpty} />
+                    ListEmptyComponent={EmptyList}
+                    contentContainerStyle={{ flexGrow: 1 }} />
             </View>
             <TouchableWithoutFeedback onPress={() => setIsModalVisible(true)}>
                 <View style={styles.floatingButton}>
@@ -44,8 +51,28 @@ const styles = StyleSheet.create(
             position: 'absolute',
             bottom: 10,
             right: 10,
+        },
+        emptyList: {
+            flex: 1,
+            alignItems: 'center',
+            justifyContent: 'center',
+            height: "100%"
+
+        },
+        title: {
+            fontWeight: "bold",
+            fontSize: 20,
+            marginTop: 10,
+            marginBottom: 8
+        },
+        subTitle: {
+            fontSize: 10,
+            marginTop: 10,
+            marginBottom: 8
+
         }
-    }
+    },
+
 )
 
 

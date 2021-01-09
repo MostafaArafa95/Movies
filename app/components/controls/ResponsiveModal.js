@@ -1,17 +1,15 @@
 import React from 'react';
-import { Modal, Text, TouchableWithoutFeedback, View } from 'react-native';
+import { Modal, TouchableWithoutFeedback, View } from 'react-native';
 import { StyleSheet } from 'react-native';
 
 const ResponsiveModal = ({ visible, onDismiss, children }) => {
     return (
         <Modal visible={visible} transparent>
-            <TouchableWithoutFeedback onPress={() => onDismiss()}>
-                <View style={style.modal}>
-                    <TouchableWithoutFeedback>
-                        {children}
-                    </TouchableWithoutFeedback>
-                </View>
-            </TouchableWithoutFeedback>
+            <View style={style.modal}>
+                <TouchableWithoutFeedback>
+                    {children}
+                </TouchableWithoutFeedback>
+            </View>
         </Modal>
     );
 };
