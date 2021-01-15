@@ -39,7 +39,6 @@ const AllMovies = () => {
 
 
     const loadMovies = (page, reset = false) => {
-        console.log("loading page" + page);
         getMovies(page).then((response) => {
             //TODO: handle errors here
             const results = response.data?.results || [];
@@ -55,7 +54,6 @@ const AllMovies = () => {
             setFetchError(null);
         }
         ).catch(err => {
-            console.log(err.message)
             setFetchError(err);
         })
     }

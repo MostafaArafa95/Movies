@@ -27,7 +27,6 @@ export class Root extends Component {
                         },
                     })}
                     tabBarOptions={{
-                        //TODO: make themes file
                         activeTintColor: 'tomato',
                         inactiveTintColor: 'gray',
                     }}

@@ -14,11 +14,9 @@ const ImagePicker = (props) => {
             maxHeight: 1000,
             maxWidth: 1000,
         }, (response) => {
-            console.log(Object.keys(response));
             setResponse(response);
             if (response?.uri) {
                 onSave(response.uri)
-                //console.log({ uri: response.uri });
             }
 
         })
@@ -41,24 +39,10 @@ const ImagePicker = (props) => {
 
 
 }
-//TODO: remove unused stuff
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        backgroundColor: '#F5FCFF',
-    },
-    button: {
-        marginVertical: 24,
-        marginHorizontal: 24,
-    },
     image: {
         marginVertical: 24,
         alignItems: 'center',
-    },
-    response: {
-        marginVertical: 16,
-        marginHorizontal: 8,
-    },
+    }
 });
 export default ImagePicker;
