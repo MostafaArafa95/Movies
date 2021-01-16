@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { FlatList, Text } from 'react-native'
+import React from 'react'
+import { FlatList } from 'react-native'
 import MovieCard from "./MovieCard";
 
 const MoviesList = (props) => {

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 import MovieCard from "../controls/MovieCard";
 import MoviesList from "../controls/MoviesList";
-import { Text } from 'react-native'
+import { Text, SafeAreaView } from 'react-native'
 import { getMovies } from "../../modules/API/APICalls/Movies";
 import { API_URLS } from "../../config/APIConfig"
 
@@ -62,13 +62,15 @@ const AllMovies = () => {
         return loadMovies(movies.page);
     }, []);
     return (
-        <MoviesList
-            data={moviesList}
-            ListFooterComponent={renderFooter}
-            ListEmptyComponent={renderErrorPage}
-            onEndReached={() => { loadMovies(movies.page + 1) }}
-            onRefresh={() => loadMovies(1, true)}
-        />
+        <SafeAreaView style={{ flex: 1 }}>
+            <MoviesList
+                data={moviesList}
+                ListFooterComponent={renderFooter}
+                ListEmptyComponent={renderErrorPage}
+                onEndReached={() => { loadMovies(movies.page + 1) }}
+                onRefresh={() => loadMovies(1, true)}
+            />
+        </SafeAreaView>
     )
 
 }

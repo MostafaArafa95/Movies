@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native'
+import { StyleSheet, Text, TouchableWithoutFeedback, View, SafeAreaView } from 'react-native'
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import MovieForm from "../controls/MovieForm";
@@ -29,10 +29,12 @@ const MyMovies = () => {
 
                     }} />
                 </ResponsiveModal>
-                <MoviesList
-                    data={moviesList}
-                    ListEmptyComponent={EmptyList}
-                    contentContainerStyle={{ flexGrow: 1 }} />
+                <SafeAreaView style={{ flex: 1 }}>
+                    <MoviesList
+                        data={moviesList}
+                        ListEmptyComponent={EmptyList}
+                        contentContainerStyle={{ flexGrow: 1 }} />
+                </SafeAreaView>
             </View>
             <TouchableWithoutFeedback onPress={() => setIsModalVisible(true)}>
                 <View style={styles.floatingButton}>
