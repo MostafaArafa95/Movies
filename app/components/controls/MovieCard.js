@@ -24,7 +24,6 @@ const MovieCard = (props) => {
                         <Text>{release_date}</Text>
                     </View>
                     <View style={{ flex: 1, }}>
-                        {/**TODO: handle too big text */}
                         <Text style={styles.overview} ellipsizeMode="tail">{overview}</Text>
                     </View>
                 </View>}

@@ -6,7 +6,6 @@ import { Text, SafeAreaView } from 'react-native'
 import { getMovies } from "../../modules/API/APICalls/Movies";
 import { API_URLS } from "../../config/APIConfig"
 
-//TODO: add comments
 const pickMoviesKeys = (movies) => {
     return movies.map(({ title, id, overview, release_date, poster_path }) =>
     ({
@@ -40,7 +39,6 @@ const AllMovies = () => {
 
     const loadMovies = (page, reset = false) => {
         getMovies(page).then((response) => {
-            //TODO: handle errors here
             const results = response.data?.results || [];
             const pickedResults = pickMoviesKeys(results);
             let newMoviesList = [...moviesList, ...pickedResults];

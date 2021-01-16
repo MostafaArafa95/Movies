@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
-import { TextInput, View, Text, StyleSheet, TouchableWithoutFeedback, Button } from "react-native";
+import { TextInput, View, Text, StyleSheet, TouchableWithoutFeedback, Button, Platform } from "react-native";
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { formatDate } from "../../modules/Utils";
 import ImagePicker from "./ImagePicker";
 const MovieForm = (props) => {
-    //TODO: fix click dismiss stuff
     const [movieData, setMovieData] = useState({ title: "", overview: "", release_date: new Date(), posterPath: "" })
     const [showDatePicker, setShowDatePicker] = useState(false)
     const { onSave = () => { } } = props;
@@ -19,13 +18,15 @@ const MovieForm = (props) => {
             {/* Release date */}
             <View style={styles.section}>
                 <Text style={styles.title}>Release date</Text>
-                <TouchableWithoutFeedback onPress={() => { setShowDatePicker(true) }}>
-                    <View>
-                        <TextInput style={styles.textInput} value={formattedDate} editable={false} />
-                    </View>
-                </TouchableWithoutFeedback>
+                {Platform.OS !== 'ios' &&
+                    <TouchableWithoutFeedback onPress={() => { setShowDatePicker(true) }}>
+                        <View>
+                            <TextInput style={styles.textInput} value={formattedDate} editable={false} />
+                        </View>
+                    </TouchableWithoutFeedback>
+                }
 
-                {showDatePicker && <DateTimePicker
+                {(showDatePicker || Platform.OS === 'ios') && <DateTimePicker
                     testID="dateTimePicker"
                     value={movieData.release_date}
                     mode={'date'}
