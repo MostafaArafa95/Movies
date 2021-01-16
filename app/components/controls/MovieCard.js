@@ -3,7 +3,7 @@ import { Text, View, Image, StyleSheet, ActivityIndicator } from 'react-native'
 const PLACEHOLDER_IMAGE_PATH = "../../assets/images/film-poster-placeholder.png";
 const MovieCard = (props) => {
     const { title = "", overview = "", posterPath = "", release_date = "", isLoading = false } = props;
-    const imageSource = posterPath ? { uri: posterPath, cache: 'only-if-cached' } : require(PLACEHOLDER_IMAGE_PATH);
+    const imageSource = posterPath ? { uri: posterPath } : require(PLACEHOLDER_IMAGE_PATH);
     return (
         <View
             style={styles.movieCard}
