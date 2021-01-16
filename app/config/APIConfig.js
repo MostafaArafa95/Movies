@@ -1,5 +1,5 @@
 export const API_URLS = {
-    baseURL: 'http://api.themoviedb.org/3/',
+    baseURL: 'https://api.themoviedb.org/3/',
     imagesBaseURl: 'https://image.tmdb.org/t/p/w200',
     movies: 'discover/movie',
 }
